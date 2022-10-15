@@ -4,7 +4,7 @@ export default function Button({ text, symbol, img, alt, handler }) {
   return (
     <button
       onClick={handler}
-      className='font-[DINPro] tracking-wide text-3xl w-full flex gap-2 items-center self-end bg-[#ff6a9f] rounded-full h-24 p-6'
+      className='font-[DINPro] pointer-events-auto tracking-wide text-3xl w-full flex gap-2 items-center self-end bg-[#ff6a9f] rounded-full h-24 p-6'
     >
       <div className='w-16 h-16 flex items-center justify-center relative'>
         <img

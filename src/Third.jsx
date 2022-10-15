@@ -120,7 +120,7 @@ const Third = forwardRef(function Third(props, ref) {
           className='relative h-[90vh] top-[5vh] z-40'
         />
       </div>
-      <div className='w-full mt-20 flex flex-col gap-16'>
+      <div className=' mt-20 flex flex-col gap-16 w-fit pointer-events-none'>
         <div>
           <p className='text-2xl relative z-40'>
             {isOverlayOn ? 'ПРЕИМУЩЕСТВА' : 'КЛЮЧЕВОЕ СООБЩЕНИЕ'}
@@ -222,7 +222,7 @@ function Overlay({ handleCloseButton }) {
     >
       <button
         onClick={handleCloseButton}
-        className='absolute right-8 top-8 w-10 z-50'
+        className='absolute right-8 top-8 w-12 h-12 z-50'
       >
         <img src={close} alt='Close Button' className='relative' />
       </button>

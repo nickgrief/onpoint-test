@@ -23,7 +23,7 @@ const Second = forwardRef(function Second(props, ref) {
       <img
         src={pinkSperm1}
         alt='Pink Sperm'
-        className={`transition-all rotate-[30deg] ease-in-out duration-[4000ms] absolute w-96 z-10 ${
+        className={`transition-all rotate-[30deg] ease-in-out duration-[3000ms] absolute w-96 z-10 ${
           anim === 1
             ? 'scale-100 right-32 top-32 opacity-100'
             : 'scale-50 right-0 top-64 opacity-0'
@@ -100,29 +100,24 @@ function TextSection() {
 
   let [isPicked, setIsPicked] = useState(false);
   let [offset, setOffset] = useState(0);
-  let [startPos, setStartPos] = useState(null);
-
-  useEffect(() => {
-    setStartPos(scrollRef.current.getBoundingClientRect().top);
-  }, [scrollRef]);
+  let [touchStart, setTouchStart] = useState(null);
 
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
-  let onTouchDown = useCallback(() => {
+  let onTouchDown = useCallback((event) => {
     setIsPicked(true);
+    setTouchStart(event.changedTouches[0].clientY);
   });
 
   let onTouchMove = useCallback(
     (event) => {
       if (!isPicked) return;
-      let touches = event.changedTouches;
-      for (let touch of touches) {
-        let y = touch.clientY - 52;
-        let off = clamp(y - startPos, 0, 362);
-        setOffset(off);
-      }
+      let touch = event.changedTouches[0];
+      let y = touch.clientY;
+      let off = clamp(y - touchStart + offset, 0, 362);
+      setOffset(off);
     },
-    [isPicked, startPos]
+    [isPicked]
   );
 
   let onTouchEnd = useCallback(() => {
